@@ -24,7 +24,7 @@ jobs:
         run: echo "No tests yet" 
 
       - name: Build Docker image
-        run: docker build -t yourname/express-app:latest .
+        run: docker build -t surfloo/express-app:latest .
 
       - name: Push image to Docker Hub
         env:
@@ -32,4 +32,4 @@ jobs:
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
         run: |
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-          docker push yourname/express-app:latest
+          docker push surfloo/express-app:latest
