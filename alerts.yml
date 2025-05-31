@@ -1,0 +1,10 @@
+groups:
+  - name: app_alerts
+    rules:
+      - alert: TooManyUserRequests
+        expr: rate(api_users_requests_total[1m]) > 5
+        for: 10s
+        labels:
+          severity: warning
+        annotations:
+          summary: "High traffic on /users endpoint"
