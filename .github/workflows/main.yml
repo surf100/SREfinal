@@ -24,7 +24,7 @@ jobs:
         run: echo "No tests yet"
 
       - name: Build Docker image
-        run: docker build -t yourname/express-app:latest .
+        run: docker build -t surfloo/express-app:latest .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -33,4 +33,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASS }}
 
       - name: Push image to Docker Hub
-        run: docker push yourname/express-app:latest
+        run: docker push surfloo/express-app:latest
