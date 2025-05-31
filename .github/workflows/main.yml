@@ -21,15 +21,16 @@ jobs:
         run: npm install
 
       - name: Run tests (if any)
-        run: echo "No tests yet"  
+        run: echo "No tests yet"
 
       - name: Build Docker image
         run: docker build -t yourname/express-app:latest .
 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
       - name: Push image to Docker Hub
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: |
-          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-          docker push yourname/express-app:latest
+        run: docker push yourname/express-app:latest
